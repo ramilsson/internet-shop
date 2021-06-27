@@ -1,5 +1,5 @@
 const initialState = {
-  itemsIds: [],
+  items: [],
   quantityMap: {},
 };
 
@@ -10,23 +10,22 @@ const actionTypes = {
   CART_QUANTITY_CHANGED: 'cart/quantityChanged',
 };
 
-function itemsIds(state = initialState.itemsIds, action) {
+function items(state = initialState.items, action) {
   switch (action.type) {
     case actionTypes.CART_ITEM_ADDED: {
-      const itemId = action.payload.itemId;
-      if (state.itemsIds.indexOf(itemId) !== -1) {
+      const item = action.payload.item;
+      if (state.items.indexOf(item) !== -1) {
         return state;
       }
-      return state.concat(itemId);
+      return state.concat(item);
     }
 
     case actionTypes.CART_ITEM_REMOVED: {
-      const itemId = action.payload.itemId;
-      return state.itemsIds.filter((id) => id !== itemId);
+      return state.items.filter((item) => item !== action.payload.item);
     }
 
     case actionTypes.CART_ITEMS_REMOVED: {
-      return initialState.itemsIds;
+      return initialState.items;
     }
 
     default: {
@@ -38,17 +37,17 @@ function itemsIds(state = initialState.itemsIds, action) {
 function quantityMap(state = initialState.quantityMap, action) {
   switch (action.type) {
     case actionTypes.CART_ITEM_ADDED: {
-      const itemId = action.payload.itemId;
+      const item = action.payload.item;
       return {
         ...state,
-        [itemId]: (state[itemId] || 0) + 1,
+        [item]: (state[item] || 0) + 1,
       };
     }
 
     case actionTypes.CART_ITEM_REMOVED: {
-      const itemId = action.payload.itemId;
+      const item = action.payload.item;
       const updatedQuantityMap = state.quantityMap;
-      delete updatedQuantityMap[itemId];
+      delete updatedQuantityMap[item];
       return updatedQuantityMap;
     }
 
@@ -57,38 +56,42 @@ function quantityMap(state = initialState.quantityMap, action) {
     }
 
     case actionTypes.CART_QUANTITY_CHANGED: {
-      const { itemId, quantity } = action.payload;
+      const { item, quantity } = action.payload;
       if (!quantity) {
         return state;
       }
       return {
         ...state,
-        [itemId]: quantity,
+        [item]: quantity,
       };
+    }
+
+    default: {
+      return state;
     }
   }
 }
 
 export function cartReducer(state = initialState, action) {
   return {
-    itemsIds: itemsIds(state.itemsIds, action),
+    items: items(state.items, action),
     quantityMap: quantityMap(state.quantityMap, action),
   };
 }
 
 /* ACTIONS */
 
-export function cartItemAdded(itemId) {
+export function cartItemAdded(item) {
   return {
     type: actionTypes.CART_ITEM_ADDED,
-    payload: { itemId },
+    payload: { item },
   };
 }
 
-export function cartItemRemoved(itemId) {
+export function cartItemRemoved(item) {
   return {
     type: actionTypes.CART_ITEM_REMOVED,
-    payload: { itemId },
+    payload: { item },
   };
 }
 
@@ -98,9 +101,9 @@ export function cartItemsRemoved() {
   };
 }
 
-export function cartQuantityChanged(itemId, quantity) {
+export function cartQuantityChanged(item, quantity) {
   return {
     type: actionTypes.CART_QUANTITY_CHANGED,
-    payload: { itemId, quantity },
+    payload: { item, quantity },
   };
 }
