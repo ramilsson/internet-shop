@@ -1,0 +1,91 @@
+@use 'variables' as *;
+
+$button-line-height: 1.2;
+$button-padding-x: 0.75em;
+$button-padding-y: 0.5em;
+
+.buttons {
+  .button:not(:last-child) {
+    margin-right: $space-small;
+    margin-bottom: $space-small;
+  }
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: $button-padding-y $button-padding-x;
+
+  background-color: $color-gray-lightest;
+  border: none;
+  border-radius: 4px;
+
+  color: $color-gray-dark;
+  font-size: $font-size;
+  text-align: center;
+  text-decoration: none;
+
+  white-space: nowrap;
+  vertical-align: middle;
+
+  line-height: $button-line-height;
+
+  cursor: pointer;
+  transition: background 0.25s ease-out;
+
+  @media (max-width: $breakpoint-x-small) {
+    font-size: $font-size-small;
+  }
+
+  &:not(:last-child) {
+    margin-right: $space-small;
+  }
+
+  &:hover {
+    background-color: $color-gray-lighter;
+  }
+  &:active {
+    background-color: $color-gray-lightest;
+  }
+
+  &[data-badge] {
+    padding-right: 1em;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(25%, -25%);
+      width: 1.75em;
+      height: 1.75em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      background-color: $color-danger;
+
+      color: white;
+      font-size: $font-size-small;
+      line-height: 1;
+
+      content: attr(data-badge);
+    }
+  }
+}
+
+.button_primary {
+  background-color: $color-primary;
+  color: white;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+  &:active {
+    background-color: $color-primary;
+  }
+}
+
+.button_medium {
+  font-size: $font-size-medium;
+}
