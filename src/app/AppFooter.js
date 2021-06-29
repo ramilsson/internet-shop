@@ -8,7 +8,7 @@ export function AppFooter() {
       <Container>
         <p className="app-footer__copyright">
           <a
-            href="https://github.com/khuzhinru"
+            href="https://github.com/khuzhinru/internet-shop"
             target="_blank"
             rel="noreferrer"
           >
