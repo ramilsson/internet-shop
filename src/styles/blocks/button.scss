@@ -5,9 +5,20 @@ $button-padding-x: 0.75em;
 $button-padding-y: 0.5em;
 
 .buttons {
-  .button:not(:last-child) {
-    margin-right: $space-small;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .button {
     margin-bottom: $space-small;
+
+    &:not(:last-child) {
+      margin-right: $space-small;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: -$space-small;
   }
 }
 
@@ -31,15 +42,7 @@ $button-padding-y: 0.5em;
   line-height: $button-line-height;
 
   cursor: pointer;
-  transition: background 0.25s ease-out;
-
-  @media (max-width: $breakpoint-x-small) {
-    font-size: $font-size-small;
-  }
-
-  &:not(:last-child) {
-    margin-right: $space-small;
-  }
+  transition: background 0.25s ease-out, color 0.25s ease-out;
 
   &:hover {
     background-color: $color-gray-lighter;
@@ -74,6 +77,21 @@ $button-padding-y: 0.5em;
   }
 }
 
+.button_link {
+  background: none;
+  padding: 0;
+  color: $color-primary;
+  
+  &:hover {
+    background: none;
+    color: $color-gray-dark;
+  }
+  &:active {
+    background: none;
+    color: $color-primary;
+  }
+}
+
 .button_primary {
   background-color: $color-primary;
   color: white;
@@ -84,6 +102,22 @@ $button-padding-y: 0.5em;
   &:active {
     background-color: $color-primary;
   }
+}
+
+.button_danger {
+  background-color: $color-danger;
+  color: white;
+
+  &:hover {
+    background-color: $color-danger-dark;
+  }
+  &:active {
+    background-color: $color-danger;
+  }
+}
+
+.button_small {
+  font-size: $font-size-small;
 }
 
 .button_medium {

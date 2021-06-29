@@ -1,3 +1,4 @@
+@use 'variables' as *;
 @use 'blocks/button';
 
 *,
@@ -8,6 +9,7 @@
 
 html {
   font-size: 16px;
+  color: $color-gray-dark;
 }
 
 body {
@@ -17,4 +19,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
