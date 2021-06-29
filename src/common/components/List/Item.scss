@@ -1,0 +1,91 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.list-item {
+  display: flex;
+  padding: $space;
+
+  border: 2px solid $color-gray-lightest;
+  border-radius: $radius;
+
+  @include shadow;
+
+  &:not(:last-child) {
+    margin-bottom: $space-small;
+  }
+}
+
+.list-item__image {
+  width: 100px;
+  height: 100px;
+  margin-right: $space;
+  padding: $space;
+  flex-shrink: 0;
+
+  background-color: $color-gray-lightest;
+  border-radius: $radius-rounded;
+
+  @media (max-width: $breakpoint-x-small) {
+    width: 48px;
+    height: 48px;
+    padding: $space-small;
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.list-item__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.list-item__title {
+  margin: 0;
+  margin-bottom: $space-small;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: $breakpoint-x-small) {
+    max-width: 160px;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.list-item__content {
+  color: $color-gray;
+  font-size: $font-size-medium;
+  font-weight: 300;
+}
+
+.list-item__actions {
+  margin-top: $space-small;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  & > * {
+    margin-bottom: $space-small;
+
+    &:not(:last-child) {
+      margin-right: $space-small;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: -$space-small;
+  }
+
+  @media (max-width: $breakpoint-x-small) {
+    justify-content: flex-start;
+  }
+}

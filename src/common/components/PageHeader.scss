@@ -1,0 +1,18 @@
+@use 'variables' as *;
+
+.page-header {
+  padding: $space-big 0;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: $space-small;
+    line-height: 1;
+  }
+}

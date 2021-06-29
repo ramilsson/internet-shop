@@ -1,0 +1,27 @@
+@use 'variables' as *;
+
+$input-line-height: 1.2;
+$input-padding-x: 0.75em;
+$input-padding-y: 0.5em;
+$input-max-width: 48px;
+
+.counter {
+  display: flex;
+}
+
+.counter__input {
+  display: inline-block;
+  max-width: $input-max-width;
+  padding: $input-padding-y $input-padding-x;
+
+  border: none;
+
+  color: $color-gray-dark;
+  font-size: $font-size;
+  text-align: center;
+  text-decoration: none;
+  line-height: $input-line-height;
+
+  white-space: nowrap;
+  vertical-align: middle;
+}
