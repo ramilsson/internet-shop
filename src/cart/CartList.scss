@@ -1,0 +1,16 @@
+@use 'variables' as *;
+
+.cart-list {
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    padding: $space 0;
+  }
+
+  &__total-price {
+    margin-right: $space;
+    font-size: $font-size-medium;
+  }
+}
