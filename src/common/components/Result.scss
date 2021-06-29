@@ -1,0 +1,12 @@
+@use 'variables' as *;
+
+.result {
+  padding: $space;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: $color-gray;
+  font-size: $font-size-big;
+  text-align: center;
+}
