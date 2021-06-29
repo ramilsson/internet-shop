@@ -2,7 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { List } from 'common/components/List';
 import { Price } from 'common/components/Price';
+import { Result } from 'common/components/Result';
 import { Counter } from 'common/components/Counter';
+import { isGoodsLoading } from 'goods/goodsSlice/selectors';
 import { getCartItems, getCartTotalPrice } from 'cart/cartSlice/selectors';
 import { GoodImage } from 'goods/GoodImage';
 import './CartList.scss';
@@ -15,6 +17,7 @@ import {
 export function CartList() {
   const items = useSelector(getCartItems);
   const totalPrice = useSelector(getCartTotalPrice);
+  const isLoading = useSelector(isGoodsLoading);
   const dispatch = useDispatch();
 
   function onQuantityChange(name, value) {
@@ -29,9 +32,8 @@ export function CartList() {
     dispatch(cartItemsRemoved());
   }
 
-  if (!items.length) {
-    return <div>No items</div>;
-  }
+  if (isLoading) return <Result>Loading...</Result>;
+  if (!items.length) return <Result>Cart is empty</Result>;
 
   return (
     <div className="cart-list">
