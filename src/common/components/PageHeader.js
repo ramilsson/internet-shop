@@ -17,7 +17,7 @@ function BackButton({ onBack }) {
   if (!onBack) return null;
   return (
     <button onClick={onBack} className="button button_link">
-      <span role="img">🡰</span> Back
+      &larr; Back
     </button>
   );
 }
