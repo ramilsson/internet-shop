@@ -1,0 +1,11 @@
+@use 'variables' as *;
+
+.app-footer {
+  margin-top: auto;
+  padding: $space 0;
+
+  &__copyright {
+    text-align: center;
+    font-weight: bold;
+  }
+}
