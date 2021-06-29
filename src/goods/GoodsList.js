@@ -1,11 +1,20 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartItemAdded } from 'cart/cartSlice/actions';
 import { List } from 'common/components/List';
 import { GoodImage } from 'goods/GoodImage';
 import { Price } from 'common/components/Price';
+import { Result } from 'common/components/Result';
+import {
+  getGoods,
+  isGoodsLoading,
+  getGoodsError,
+} from 'goods/goodsSlice/selectors';
 
-export function GoodsList({ goods }) {
+export function GoodsList() {
+  const goods = useSelector(getGoods);
+  const isLoading = useSelector(isGoodsLoading);
+  const error = useSelector(getGoodsError);
   const dispatch = useDispatch();
 
   function addToCart(e) {
@@ -14,6 +23,9 @@ export function GoodsList({ goods }) {
       dispatch(cartItemAdded(itemName));
     }
   }
+
+  if (isLoading) return <Result>Loading...</Result>;
+  if (error) return <Result>{error}</Result>;
 
   return (
     <List

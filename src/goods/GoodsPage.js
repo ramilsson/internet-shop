@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { GoodsList } from 'goods/GoodsList';
 import { Container } from 'common/components/Container';
 import { PageHeader } from 'common/components/PageHeader';
 import { getCartTotalQuantity } from 'cart/cartSlice/selectors';
-import { getGoods } from 'goods/goodsSlice/selectors';
-import { GoodsList } from 'goods/GoodsList';
 
 const PAGE_TITLE = 'Shop';
 
 export function GoodsPage() {
-  const goods = useSelector(getGoods);
   const cartTotalQuantity = useSelector(getCartTotalQuantity);
 
   return (
@@ -27,7 +25,7 @@ export function GoodsPage() {
           </Link>
         }
       />
-      <GoodsList goods={goods} />
+      <GoodsList />
     </Container>
   );
 }
